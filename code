@@ -1,0 +1,28 @@
+import UIKit
+
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    
+    @IBOutlet weak var myTableView: UITableView!
+    var animals = ["cat", "monkey", "dog", "pig", "hamster"]
+    var countries = ["Republic of Korea", "Thailand", "United States of America", "United Kingdom of the Great Britain and Northern Irland", "Africa"]
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        myTableView.delegate = self
+        myTableView.dataSource = self
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return animals.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let id = "Re"
+        let cell = myTableView.dequeueReusableCell(withIdentifier: id, for: indexPath)
+        let myImage = UIImage(named:"\(indexPath.row+1)cat.png")
+        cell.imageView?.image = myImage
+        cell.textLabel?.text = animals[indexPath.row]
+        cell.detailTextLabel?.text = countries[indexPath.row]
+        return cell
+    }
+}
+
